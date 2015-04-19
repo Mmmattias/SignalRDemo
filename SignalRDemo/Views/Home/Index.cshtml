@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@section scripts
+{
+    <script type="text/javascript" src="/signalr/hubs"></script>
+}
+
+<div data-ng-controller="chatController">
+
+    <div id="MessagesContainer" style="height: 600px;">
+        <p data-ng-repeat="message in messages track by $index">
+            {{message}}
+        </p>
+    </div>
+
+    <div id="ChatControlsContainer">
+        <form data-ng-submit="sendMessage(name, messageToSend)">
+            <div>
+                <h3>Namn</h3>
+                <input type="text" data-ng-model="name" />
+            </div>
+            <div>
+                <h3>Meddelande</h3>
+                <input type="text" data-ng-model="messageToSend" style="width: 500px;">
+            </div>
+            <button>Send</button>
+        </form>
+    </div>
+</div>
