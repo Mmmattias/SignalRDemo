@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using Microsoft.AspNet.SignalR.Client;
 
 namespace ConsoleClient
@@ -8,7 +9,8 @@ namespace ConsoleClient
         static void Main(string[] args)
         {
             // Skapa uppkopplingen och proxyn
-            var connection = new HubConnection("http://signalrdemo.local");
+            var hubUrl = ConfigurationManager.AppSettings["SignalRHubUrl"];
+            var connection = new HubConnection(hubUrl);
             var hub = connection.CreateHubProxy("chatHub");
 
             // Vad händer när servern anropar klienten (i det här fallet metoden "Broadcast")?

@@ -6,7 +6,7 @@ app.controller("chatController", ["$scope", function($scope) {
 
     chat.client.broadcast = function (response) {
         $scope.$apply(function() {
-            $scope.messages.push(response);
+            $scope.messages.unshift(response);
         });
     };
 
