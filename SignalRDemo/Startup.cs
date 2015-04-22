@@ -15,6 +15,7 @@ namespace SignalRDemo
                 map.UseCors(CorsOptions.AllowAll);
                 var hubConfiguration = new HubConfiguration
                 {
+                    EnableDetailedErrors = true
                     // You can enable JSONP by uncommenting line below.
                     // JSONP requests are insecure but some older browsers (and some
                     // versions of IE) require JSONP to work cross domain

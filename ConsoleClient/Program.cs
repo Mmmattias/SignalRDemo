@@ -13,8 +13,13 @@ namespace ConsoleClient
             var connection = new HubConnection(hubUrl);
             var hub = connection.CreateHubProxy("chatHub");
 
+            connection.Error += ex => Console.WriteLine("Error: {0}", ex.Message);
+
+
             // Vad händer när servern anropar klienten (i det här fallet metoden "Broadcast")?
             hub.On<string>("Broadcast", message => Console.WriteLine(message));
+            
+            // Starta uppkopplingen
             connection.Start().Wait();
 
             Console.WriteLine("What's your name?");
@@ -25,9 +30,9 @@ namespace ConsoleClient
                 var messageToSend = Console.ReadLine();
                 var messageModel = new ChatMessageModel(name, messageToSend);
 
+                // Skicka meddelande till servern
                 hub.Invoke<ChatMessageModel>("SendMessage", messageModel);
             }
-
         }
     }
 
