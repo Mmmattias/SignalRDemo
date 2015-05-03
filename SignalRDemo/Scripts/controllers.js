@@ -3,6 +3,7 @@
 app.controller("chatController", ["$scope", function($scope) {
     $scope.messages = [];
     var chat = $.connection.chatHub;
+    $.connection.hub.logging = true;
 
     chat.client.broadcast = function (response) {
         $scope.$apply(function() {

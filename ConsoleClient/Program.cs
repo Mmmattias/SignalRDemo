@@ -4,7 +4,7 @@ using Microsoft.AspNet.SignalR.Client;
 
 namespace ConsoleClient
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {

@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNet.SignalR;
-using Microsoft.Owin;
 using Microsoft.Owin.Cors;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(SignalRDemo.Startup))]
 namespace SignalRDemo
 {
-    public partial class Startup
+    public class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             app.Map("/signalr", map =>
             {
+                // Cors gör att vi får stöd för CrossDomain-kommunikation!
                 map.UseCors(CorsOptions.AllowAll);
                 var hubConfiguration = new HubConfiguration
                 {
@@ -22,6 +21,7 @@ namespace SignalRDemo
                     // EnableJSONP = true
                 };
                 hubConfiguration.EnableDetailedErrors = true;
+
                 map.RunSignalR(hubConfiguration);
             });
         }
